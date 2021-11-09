@@ -1,4 +1,4 @@
-const { fifaData } = require("./fifa.js");
+import { fifaData } from "./fifa.js";
 
 // ⚽️ M  V P ⚽️ //
 
@@ -47,7 +47,7 @@ function getYears(array, getFinalsCB) {
   const years = getFinalsCB(array).map((e) => e["Year"]);
   return years;
 }
-console.log(getYears(fifaData, getFinals));
+// console.log(getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
@@ -57,11 +57,19 @@ Use the higher-order function getWinners to do the following:
 4. Returns the names of all winning countries in an array called `winners` */
 // 2 parameters an array and getFinalsCB
 //just look at goals to determine the winner
-function getWinners(/* code here */) {
+function getWinners(array, getFinalsCB) {
   //use map
   //use a conditional
   //if home team goals > away team goals then we
   //want
+  const mapa = getFinalsCB(array).map((e) => {
+    if (e["Home Team Goals"] > e["Away Team Goals"]) {
+      return e["Home Team Name"];
+    } else {
+      return e["Away Team Name"];
+    }
+  });
+  return mapa;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -132,7 +140,7 @@ function foo() {
   return "bar";
 }
 foo();
-module.exports = {
+export default {
   foo,
   getFinals,
   getYears,
